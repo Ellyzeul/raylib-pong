@@ -71,30 +71,39 @@ void validateProportionRate(float proportion) {
   }
 }
 
-Vector3 scorePositionAndSize(Vector4 coords, int halfWidth, int halfHeight, float proportion) {
+Vector2 scorePosition(Vector4 coords, int halfWidth, int halfHeight, float proportion) {
   int drawX = round(coords.x + halfWidth - (halfWidth * proportion)) + halfWidth/4,
-      drawY = round(coords.y + halfHeight - (halfHeight * proportion)) + halfHeight/8,
-      drawSize = round(RL_PONG_MIN(halfWidth, halfHeight) * 2 * proportion);
+      drawY = round(coords.y + halfHeight - (halfHeight * proportion)) + halfHeight/8;
 
-  return (Vector3) { drawX, drawY, drawSize };
+  return (Vector2) { drawX, drawY };
 }
 
-Vector3 leftScorePositionAndSize(int borderPadding, int thickness, float proportion) {
+Vector2 leftScorePosition(int borderPadding, int thickness, float proportion) {
   validateProportionRate(proportion);
 
   Vector4 coords = leftScoreCoordinates(borderPadding, thickness);
   int halfWidth = areaWidth(coords) / 2,
       halfHeight = areaHeight(coords) / 2;
 
-  return scorePositionAndSize(coords, halfWidth, halfHeight, proportion);
+  return scorePosition(coords, halfWidth, halfHeight, proportion);
 }
 
-Vector3 rightScorePositionAndSize(int borderPadding, int thickness, float proportion) {
+Vector2 rightScorePosition(int borderPadding, int thickness, float proportion) {
   validateProportionRate(proportion);
 
   Vector4 coords = rightScoreCoordinates(borderPadding, thickness);
   int halfWidth = areaWidth(coords) / 2,
       halfHeight = areaHeight(coords) / 2;
 
-  return scorePositionAndSize(coords, halfWidth, halfHeight, proportion);
+  return scorePosition(coords, halfWidth, halfHeight, proportion);
+}
+
+int scoreFontSize(int borderPadding, int thickness, float proportion) {
+  validateProportionRate(proportion);
+
+  Vector4 coords = rightScoreCoordinates(borderPadding, thickness);
+  int halfWidth = areaWidth(coords) / 2,
+      halfHeight = areaHeight(coords) / 2;
+
+  return round(RL_PONG_MIN(halfWidth, halfHeight) * 2 * proportion);
 }

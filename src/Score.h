@@ -1,8 +1,9 @@
 #ifndef __ELLYZ__RL_PONG__SCORE__
 #define __ELLYZ__RL_PONG__SCORE__
 
-#include <raylib.h>
+#include "State.h"
 
-void drawScore(Vector2 score, int borderPadding);
+void drawScore(State state);
+State updateScoreSize(State state);
 
 #endif//__ELLYZ__RL_PONG__SCORE__

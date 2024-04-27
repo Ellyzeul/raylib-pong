@@ -10,7 +10,8 @@ Vector2 lowerBoundarySize(int borderPadding, int thickness);
 Vector4 playableAreaCoordinates(int borderPadding, int thickness);
 int playableAreaWidth(int borderPadding, int thickness);
 int playableAreaHeight(int borderPadding, int thickness);
-Vector3 leftScorePositionAndSize(int borderPadding, int thickness, float proportion);
-Vector3 rightScorePositionAndSize(int borderPadding, int thickness, float proportion);
+Vector2 leftScorePosition(int borderPadding, int thickness, float proportion);
+Vector2 rightScorePosition(int borderPadding, int thickness, float proportion);
+int scoreFontSize(int borderPadding, int thickness, float proportion);
 
 #endif//__ELLYZ__RL_PONG__SIZES__
