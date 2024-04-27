@@ -16,7 +16,7 @@ int updatePadding(const int padding, int *growing, const int increaseRate) {
   return padding - increaseRate;
 }
 
-void startGame() {
+void startGame(void) {
   int padding = 20, growing = 1;
   Vector2 score = (Vector2) { 0, 0 };
 
@@ -27,7 +27,7 @@ void startGame() {
 
     ClearBackground(BACKGROUND_COLOR);
     setBoundaries(padding);
-    padding = updatePadding(padding, &growing, 0);
+    padding = updatePadding(padding, &growing, 1);
     drawScore(score, padding);
 
     EndDrawing();
