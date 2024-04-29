@@ -38,18 +38,6 @@ int areaHeight(Vector4 coords) {
   return coords.w - coords.y;
 }
 
-int playableAreaWidth(int borderPadding, int thickness) {
-  Vector4 coords = playableAreaCoordinates(borderPadding, thickness);
-
-  return areaWidth(coords);
-}
-
-int playableAreaHeight(int borderPadding, int thickness) {
-  Vector4 coords = playableAreaCoordinates(borderPadding, thickness);
-
-  return areaHeight(coords);
-}
-
 Vector4 leftScoreCoordinates(int borderPadding, int thickness) {
   Vector4 coords = playableAreaCoordinates(borderPadding, thickness);
   int halfWidth = areaWidth(coords) / 2;
@@ -106,4 +94,26 @@ int scoreFontSize(int borderPadding, int thickness, float proportion) {
       halfHeight = areaHeight(coords) / 2;
 
   return round(RL_PONG_MIN(halfWidth, halfHeight) * 2 * proportion);
+}
+
+Vector2 player1Position(int borderPadding, int thickness, float positionProportion, float sizeProportion) {
+  Vector4 coords = playableAreaCoordinates(borderPadding, thickness);
+  int height = areaHeight(coords);
+
+  return (Vector2) { coords.x, coords.y + (height * (1 - sizeProportion) * positionProportion) };
+}
+
+Vector2 player2Position(int borderPadding, int borderThickness, float positionProportion, float sizeProportion, int playerThickness) {
+  Vector4 coords = playableAreaCoordinates(borderPadding, borderThickness);
+  int height = areaHeight(coords),
+      width = areaWidth(coords);
+
+  return (Vector2) { coords.x + width - playerThickness, coords.y + (height * (1 - sizeProportion) * positionProportion) };
+}
+
+Vector2 playerSize(int borderPadding, int borderThickness, float sizeProportion, int playerThickness) {
+  Vector4 coords = playableAreaCoordinates(borderPadding, borderThickness);
+  int height = areaHeight(coords);
+
+  return (Vector2) { playerThickness, height * sizeProportion };
 }

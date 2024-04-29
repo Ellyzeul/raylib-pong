@@ -4,6 +4,18 @@
 #include <raylib.h>
 
 typedef struct {
+  float positionProportion;
+  float sizeProportion;
+  float velocity;
+  int upButton;
+  int downButton;
+  short movementDirection;
+  int dashButton;
+  short dashing;
+  float dashCooldown;
+} Player;
+
+typedef struct {
   int boundaryPadding;
   int boundaryThickness;
   short boundaryGrowing;
@@ -20,6 +32,13 @@ typedef struct {
   int scoreFontSize;
   Vector2 leftScorePosition;
   Vector2 rightScorePosition;
+
+  Player player1;
+  Player player2;
+  int playerThickness;
+  float playerDashVelocity;
+  float playerDashCooldown;
+  float playerDashDuration;
 } State;
 
 State stateInit(void);
