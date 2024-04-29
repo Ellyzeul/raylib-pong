@@ -92,15 +92,6 @@ Player updatePlayerPositionProportion(Player player, float dashVelocity) {
 State updatePlayersPositionProportion(State state, const int pressed) {
   state.player1 = updatePlayerPositionProportion(state.player1, state.playerDashVelocity);
   state.player2 = updatePlayerPositionProportion(state.player2, state.playerDashVelocity);
-
-  DrawText(
-    TextFormat("Player1 - position: %3.2f, velocity: %f, direction: %d, dash: %d, cooldown: %f", state.player1.positionProportion, state.player1.velocity, state.player1.movementDirection, state.player1.dashing, state.player1.dashCooldown),
-    20, 40, 20, (Color) { 0, 0, 0, 255 }
-  );
-  DrawText(
-    TextFormat("Player2 - position: %3.2f, velocity: %f, direction: %d, dash: %d, cooldown: %f", state.player2.positionProportion, state.player2.velocity, state.player2.movementDirection, state.player2.dashing, state.player2.dashCooldown),
-    20, 60, 20, (Color) { 0, 0, 0, 255 }
-  );
   
   return state;
 }
